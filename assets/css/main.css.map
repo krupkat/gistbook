@@ -3,7 +3,7 @@
 	"file": "main.css",
 	"sources": [
 		"main.scss",
-		"vendor/bundle/ruby/3.1.0/bundler/gems/no-style-please-545b5ed88c37/_sass/no-style-please.scss"
+		"vendor/bundle/ruby/3.1.0/bundler/gems/no-style-please-84b50cd0b692/_sass/no-style-please.scss"
 	],
 	"sourcesContent": [
 		"@import \"no-style-please\";",
