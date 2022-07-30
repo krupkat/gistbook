@@ -19,7 +19,15 @@
       property="og:description"
       content='How to capture and use the template parameters in custom debugger visualizers. #### Couple of caveats: Capture multiple template parameters (not in the [docs](https://docs.microsoft.com/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022#templated-classes)), e.g.: ``` &lt;Type Name="MyType&amp;lt;*,*,*&amp;gt;"&gt; ``` Then refer to these as `$T1`, `$T2` and `$T3`, however, inside a `DisplayString` you have to use `{"$T1"}` instead. This prints extra quotes around the string, which you can get rid of by adding a format specifier ([docs](https://docs.microsoft.com/en-us/visualstudio/debugger/format-specifiers-in-cpp?view=vs-2022#BKMK_Visual_Studio_2012_format_specifiers)): ``` {"$T1", sb} ``` To compare the name of a parameter type in a `Condition` one has to use the `strcmp` function: ``` Condition=&#39;strcmp("$T1","char")==0&#39; ``` `DisplayString` can also include a `Condition`. Attached example adapted from: [https://github.com/hhoppe/Mesh-processing-library/blob/main/libHh/libHh.natvis](https://github.com/hhoppe/Mesh-processing-library/blob/aade85891a0fd02c9f74f01225cbfb1b6e77b44e/libHh/libHh.natvis)'
     />
-    <meta property="og:site_name" content="krupkat’s Gistbook" />
+    <link
+      rel="canonical"
+      href="https://krupkat.github.io/gistbook/gist/ec6072d5f60358d99d3db562be58204d"
+    />
+    <meta
+      property="og:url"
+      content="https://krupkat.github.io/gistbook/gist/ec6072d5f60358d99d3db562be58204d"
+    />
+    <meta property="og:site_name" content="Gistbook" />
     <meta property="og:type" content="article" />
     <meta
       property="article:published_time"
@@ -38,17 +46,17 @@
         "headline": "MS debugger visualizer",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "/gistbook/gist/ec6072d5f60358d99d3db562be58204d"
+          "@id": "https://krupkat.github.io/gistbook/gist/ec6072d5f60358d99d3db562be58204d"
         },
-        "url": "/gistbook/gist/ec6072d5f60358d99d3db562be58204d"
+        "url": "https://krupkat.github.io/gistbook/gist/ec6072d5f60358d99d3db562be58204d"
       }
     </script>
     <!-- End Jekyll SEO tag -->
     <link
       type="application/atom+xml"
       rel="alternate"
-      href="/gistbook/feed.xml"
-      title="krupkat's Gistbook"
+      href="https://krupkat.github.io/gistbook/feed.xml"
+      title="Gistbook"
     />
     <link rel="shortcut icon" type="image/x-icon" href="/gistbook/logo.png" />
     <link rel="stylesheet" href="/gistbook/assets/css/main.css" />

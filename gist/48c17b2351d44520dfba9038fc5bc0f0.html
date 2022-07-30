@@ -19,7 +19,15 @@
       property="og:description"
       content='# WSL Install WSL: ``` wsl --install ``` Launch Ubuntu and install basics: ``` sudo apt install git build-essential python3 python-is-python3 ``` Follow https://apt.kitware.com/ to add `cmake` repository. # Windows For Ryzen CPUs: - Check https://www.amd.com/en/support/kb/faq/pa-400 - Install [AMD Chipset Software 3.10.08.506](https://www.amd.com/en/support/kb/release-notes/rn-ryzen-chipset-3-10-08-506) (or newer) Enable Core isolation: - Settings -&gt; Search "Core isolation" -&gt; Enable Memory integrity Set Windows Terminal defaults: - Windows Terminal -&gt; Settings -&gt; Default Terminal Application -&gt; Windows Terminal - Windows Terminal -&gt; Settings -&gt; Profiles -&gt; Ubuntu -&gt; Starting directory -&gt; /home/tom Install VS build tools: https://visualstudio.microsoft.com/cs/downloads/#build-tools-for-visual-studio-2022 Install apps through `winget`: ``` winget install Altap.Salamander winget install GIMP.GIMP winget install Git.Git winget install GoLang.Go winget install hackjutsu.Lepton winget install IrfanSkiljan.IrfanView winget install Kitware.CMake winget install Microsoft.VisualStudioCode winget install Python.Python.3 winget install -i TheDocumentFoundation.LibreOffice winget install VideoLAN.VLC ``` # SSH ## Windows Install OpenSSH: - Check if `C:\Windows\System32\OpenSSH` exists - If not, install through Settings -&gt; Add optional featuree -&gt; OpenSSH client Autorun on startup: - Services -&gt; OpenSSH Authentication Agent -&gt; Startup type -&gt; Automatic Add your keys with `ssh-add` ## WSL Follow [SSH on WSL](https://gist.github.com/krupkat/e626ba726c8690974e1ea7148386f3fc) # Git In Windows point Git to use the Windows OpenSSH client: - add environment variable `GIT_SSH=C:\Windows\System32\OpenSSH\ssh.exe` Both in Windows and WSL: ``` git config --global user.name "Your Name" git config --global user.email ID+username@users.noreply.github.com ``` # VS Code Follow [VS Code setup](https://gist.github.com/krupkat/72a675bfb16244fe887ac77eb2b0fdfa)'
     />
-    <meta property="og:site_name" content="krupkat’s Gistbook" />
+    <link
+      rel="canonical"
+      href="https://krupkat.github.io/gistbook/gist/48c17b2351d44520dfba9038fc5bc0f0"
+    />
+    <meta
+      property="og:url"
+      content="https://krupkat.github.io/gistbook/gist/48c17b2351d44520dfba9038fc5bc0f0"
+    />
+    <meta property="og:site_name" content="Gistbook" />
     <meta property="og:type" content="article" />
     <meta
       property="article:published_time"
@@ -38,17 +46,17 @@
         "headline": "Setup Windows 11",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "/gistbook/gist/48c17b2351d44520dfba9038fc5bc0f0"
+          "@id": "https://krupkat.github.io/gistbook/gist/48c17b2351d44520dfba9038fc5bc0f0"
         },
-        "url": "/gistbook/gist/48c17b2351d44520dfba9038fc5bc0f0"
+        "url": "https://krupkat.github.io/gistbook/gist/48c17b2351d44520dfba9038fc5bc0f0"
       }
     </script>
     <!-- End Jekyll SEO tag -->
     <link
       type="application/atom+xml"
       rel="alternate"
-      href="/gistbook/feed.xml"
-      title="krupkat's Gistbook"
+      href="https://krupkat.github.io/gistbook/feed.xml"
+      title="Gistbook"
     />
     <link rel="shortcut icon" type="image/x-icon" href="/gistbook/logo.png" />
     <link rel="stylesheet" href="/gistbook/assets/css/main.css" />

@@ -19,7 +19,15 @@
       property="og:description"
       content="When you&#39;d like to write a test that checks whether a piece of code compiles with given template parameters, use concepts: ``` template&lt;typename T, typename U&gt; concept Addable = requires (T a, U b) { a + b; }; REQUIRE(Addable&lt;std::vector&lt;float&gt;, int&gt;) ``` However this doesn&#39;t always work, see the included example. The catch is when there is a function in the _immediate context_ that takes the two parameters `[1]`, but doesn&#39;t compile down the line. A remedy is to add an explicit requirement to this function `[2]`. Demo: https://godbolt.org/z/5WM7denjK Related discussion: https://stackoverflow.com/questions/70940008/concept-requirement-and-non-immediate-context"
     />
-    <meta property="og:site_name" content="krupkat’s Gistbook" />
+    <link
+      rel="canonical"
+      href="https://krupkat.github.io/gistbook/gist/0787be990a67be1d918974cfabc0cb11"
+    />
+    <meta
+      property="og:url"
+      content="https://krupkat.github.io/gistbook/gist/0787be990a67be1d918974cfabc0cb11"
+    />
+    <meta property="og:site_name" content="Gistbook" />
     <meta property="og:type" content="article" />
     <meta
       property="article:published_time"
@@ -38,17 +46,17 @@
         "headline": "C++20 concepts for testing",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "/gistbook/gist/0787be990a67be1d918974cfabc0cb11"
+          "@id": "https://krupkat.github.io/gistbook/gist/0787be990a67be1d918974cfabc0cb11"
         },
-        "url": "/gistbook/gist/0787be990a67be1d918974cfabc0cb11"
+        "url": "https://krupkat.github.io/gistbook/gist/0787be990a67be1d918974cfabc0cb11"
       }
     </script>
     <!-- End Jekyll SEO tag -->
     <link
       type="application/atom+xml"
       rel="alternate"
-      href="/gistbook/feed.xml"
-      title="krupkat's Gistbook"
+      href="https://krupkat.github.io/gistbook/feed.xml"
+      title="Gistbook"
     />
     <link rel="shortcut icon" type="image/x-icon" href="/gistbook/logo.png" />
     <link rel="stylesheet" href="/gistbook/assets/css/main.css" />
