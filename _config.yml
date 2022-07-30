@@ -1,6 +1,7 @@
-title: krupkat's Gistbook
+title: Gistbook
 author: Tomáš Krupka
-description: krupkat's Gists
+description: a simple way to organize your Gists in one place - Gistbook
+url: https://krupkat.github.io
 baseurl: "/gistbook"
 
 theme: no-style-please
