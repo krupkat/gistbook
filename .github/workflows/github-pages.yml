@@ -1,0 +1,29 @@
+name: Build and deploy jekyll site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  jekyll:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+
+      - name: Download Gists
+        run: python bootstrap.py ${{ secrets.GIST_TOKEN }}
+
+      - uses: limjh16/jekyll-action-ts@v2
+        with:
+          enable_cache: true
+          format_output: true
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: master
