@@ -66,7 +66,7 @@ def WritePost(gist):
         file.write("title: {}\n".format(gist.title))
         file.write("category: gist\n")
         file.write("permalink: /gist/{}\n".format(gist.id))
-        file.write("date: {}\n".format(gist.updated.strftime("%Y-%m-%d %H:%M:{} %z")))
+        file.write("date: {}\n".format(gist.updated.strftime("%Y-%m-%d %H:%M:%S %z")))
         if gist.tags:
             file.write("tags:\n")
             for tag in gist.tags:
