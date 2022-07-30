@@ -1,0 +1,22 @@
+entries:
+  - title: info
+    entries:
+      - title: a simple way to organize your Gists in one place
+      - title: github repo
+        url: https://github.com/krupkat/gistbook
+
+  - title: gists
+    post_list:
+      limit: 7
+      show_more: true
+      show_more_text: See all gists...
+      show_more_url: gists
+
+  - title: feed
+    url: feed.xml
+  
+  - title: tags
+    show_collection: tags
+  
+  - title: personal website
+    url: https://krupkat.cz

@@ -1,0 +1,19 @@
+title: krupkat's Gistbook
+author: Tomáš Krupka
+description: krupkat's Gists
+
+theme: no-style-please
+
+theme_config:
+  appearance: "auto"
+  back_home_text: ".."
+  date_format: "%Y-%m-%d"
+  show_description: false
+
+collections:
+  tags:
+    output: true
+    permalink: /:collection/:name
+
+feed:
+  excerpt_only: true
