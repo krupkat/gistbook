@@ -19,14 +19,6 @@
       property="og:description"
       content='## Install Mega cmd Add the Mega repository in wsl sources, create `/etc/apt/sources.list.d/megasync.list`: ``` deb https://mega.nz/linux/MEGAsync/xUbuntu_20.04/ ./ ``` Import key and install: ``` wget -O - https://mega.nz/linux/MEGAsync/xUbuntu_20.04/Release.key | sudo apt-key add - sudo apt update sudo apt install megacmd ``` Create unlocker binary in `/usr/local/bin/mega-unlock`: ``` #!/usr/bin/bash read -s pass mega-login &lt;username&gt; $pass unset pass ``` Run it and enter the Mega password: ``` chmod +x /usr/local/bin/mega-unlock mega-unlock ``` ## Setup backup Prepare backup directories and set up sync: ``` mega-mkdir wsl mkdir sync mega-sync sync wsl ``` Create backup script `backup.sh`: ``` #!/usr/bin/bash zip -r -9 sync/backup.zip . -x "/.*" -x "/sync/*" ``` ## Remove Mega autocompletion This seems to be a bug in WSL, seems to slow down startup of each instance. Remove `/etc/bash_completion.d/megacmd_completion.sh` to fix.'
     />
-    <link
-      rel="canonical"
-      href="https://riggraz.dev/gistbook/gist/8a8c8951dcf1030e2c759a90ee165b92"
-    />
-    <meta
-      property="og:url"
-      content="https://riggraz.dev/gistbook/gist/8a8c8951dcf1030e2c759a90ee165b92"
-    />
     <meta property="og:site_name" content="krupkat’s Gistbook" />
     <meta property="og:type" content="article" />
     <meta
@@ -46,16 +38,16 @@
         "headline": "Backup WSL to Mega",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://riggraz.dev/gistbook/gist/8a8c8951dcf1030e2c759a90ee165b92"
+          "@id": "/gistbook/gist/8a8c8951dcf1030e2c759a90ee165b92"
         },
-        "url": "https://riggraz.dev/gistbook/gist/8a8c8951dcf1030e2c759a90ee165b92"
+        "url": "/gistbook/gist/8a8c8951dcf1030e2c759a90ee165b92"
       }
     </script>
     <!-- End Jekyll SEO tag -->
     <link
       type="application/atom+xml"
       rel="alternate"
-      href="https://riggraz.dev/gistbook/feed.xml"
+      href="/gistbook/feed.xml"
       title="krupkat's Gistbook"
     />
     <link rel="shortcut icon" type="image/x-icon" href="/gistbook/logo.png" />
