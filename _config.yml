@@ -17,3 +17,9 @@ collections:
 
 feed:
   excerpt_only: true
+
+exclude:
+  - bootstrap.py
+  - requirements.txt
+  - LICENSE
+  - README.md
