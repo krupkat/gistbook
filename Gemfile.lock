@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/krupkat/no-style-please.git
-  revision: 84b50cd0b692bf7a6d1575de4ae7f41d3430e1f8
+  revision: 46a731c6a441e908816b71854db61cc7c1a667d5
   specs:
     no-style-please (0.4.8)
       jekyll (~> 4.2.2)
