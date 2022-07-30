@@ -15,7 +15,9 @@ jobs:
           ruby-version: 3.0
 
       - name: Download Gists
-        run: python bootstrap.py ${{ secrets.GIST_TOKEN }}
+        run: |
+          pip install -r requirements.txt
+          python bootstrap.py ${{ secrets.GIST_TOKEN }}
 
       - uses: limjh16/jekyll-action-ts@v2
         with:
