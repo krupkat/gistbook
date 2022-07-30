@@ -2,8 +2,7 @@ entries:
   - title: info
     entries:
       - title: a simple way to organize your Gists in one place
-      - title: github repo
-        url: https://github.com/krupkat/gistbook
+      - title: "try it for yourself: <a href='https://github.com/krupkat/gistbook'>github repo</a>"
 
   - title: gists
     post_list:
