@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MS debugger visualizer</title>
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <meta name="generator" content="Jekyll v4.2.2" />
+    <meta property="og:title" content="MS debugger visualizer" />
+    <meta name="author" content="Tomáš Krupka" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      name="description"
+      content='How to capture and use the template parameters in custom debugger visualizers. #### Couple of caveats: Capture multiple template parameters (not in the [docs](https://docs.microsoft.com/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022#templated-classes)), e.g.: ``` &lt;Type Name="MyType&amp;lt;*,*,*&amp;gt;"&gt; ``` Then refer to these as `$T1`, `$T2` and `$T3`, however, inside a `DisplayString` you have to use `{"$T1"}` instead. This prints extra quotes around the string, which you can get rid of by adding a format specifier ([docs](https://docs.microsoft.com/en-us/visualstudio/debugger/format-specifiers-in-cpp?view=vs-2022#BKMK_Visual_Studio_2012_format_specifiers)): ``` {"$T1", sb} ``` To compare the name of a parameter type in a `Condition` one has to use the `strcmp` function: ``` Condition=&#39;strcmp("$T1","char")==0&#39; ``` `DisplayString` can also include a `Condition`. Attached example adapted from: [https://github.com/hhoppe/Mesh-processing-library/blob/main/libHh/libHh.natvis](https://github.com/hhoppe/Mesh-processing-library/blob/aade85891a0fd02c9f74f01225cbfb1b6e77b44e/libHh/libHh.natvis)'
+    />
+    <meta
+      property="og:description"
+      content='How to capture and use the template parameters in custom debugger visualizers. #### Couple of caveats: Capture multiple template parameters (not in the [docs](https://docs.microsoft.com/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022#templated-classes)), e.g.: ``` &lt;Type Name="MyType&amp;lt;*,*,*&amp;gt;"&gt; ``` Then refer to these as `$T1`, `$T2` and `$T3`, however, inside a `DisplayString` you have to use `{"$T1"}` instead. This prints extra quotes around the string, which you can get rid of by adding a format specifier ([docs](https://docs.microsoft.com/en-us/visualstudio/debugger/format-specifiers-in-cpp?view=vs-2022#BKMK_Visual_Studio_2012_format_specifiers)): ``` {"$T1", sb} ``` To compare the name of a parameter type in a `Condition` one has to use the `strcmp` function: ``` Condition=&#39;strcmp("$T1","char")==0&#39; ``` `DisplayString` can also include a `Condition`. Attached example adapted from: [https://github.com/hhoppe/Mesh-processing-library/blob/main/libHh/libHh.natvis](https://github.com/hhoppe/Mesh-processing-library/blob/aade85891a0fd02c9f74f01225cbfb1b6e77b44e/libHh/libHh.natvis)'
+    />
+    <link
+      rel="canonical"
+      href="https://riggraz.dev/gist/ec6072d5f60358d99d3db562be58204d"
+    />
+    <meta
+      property="og:url"
+      content="https://riggraz.dev/gist/ec6072d5f60358d99d3db562be58204d"
+    />
+    <meta property="og:site_name" content="krupkat’s Gistbook" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="article:published_time"
+      content="2022-07-27T16:42:00+00:00"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="MS debugger visualizer" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": { "@type": "Person", "name": "Tomáš Krupka" },
+        "dateModified": "2022-07-27T16:42:00+00:00",
+        "datePublished": "2022-07-27T16:42:00+00:00",
+        "description": "How to capture and use the template parameters in custom debugger visualizers. #### Couple of caveats: Capture multiple template parameters (not in the [docs](https://docs.microsoft.com/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022#templated-classes)), e.g.: ``` &lt;Type Name=&quot;MyType&amp;lt;*,*,*&amp;gt;&quot;&gt; ``` Then refer to these as `$T1`, `$T2` and `$T3`, however, inside a `DisplayString` you have to use `{&quot;$T1&quot;}` instead. This prints extra quotes around the string, which you can get rid of by adding a format specifier ([docs](https://docs.microsoft.com/en-us/visualstudio/debugger/format-specifiers-in-cpp?view=vs-2022#BKMK_Visual_Studio_2012_format_specifiers)): ``` {&quot;$T1&quot;, sb} ``` To compare the name of a parameter type in a `Condition` one has to use the `strcmp` function: ``` Condition=&#39;strcmp(&quot;$T1&quot;,&quot;char&quot;)==0&#39; ``` `DisplayString` can also include a `Condition`. Attached example adapted from: [https://github.com/hhoppe/Mesh-processing-library/blob/main/libHh/libHh.natvis](https://github.com/hhoppe/Mesh-processing-library/blob/aade85891a0fd02c9f74f01225cbfb1b6e77b44e/libHh/libHh.natvis)",
+        "headline": "MS debugger visualizer",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://riggraz.dev/gist/ec6072d5f60358d99d3db562be58204d"
+        },
+        "url": "https://riggraz.dev/gist/ec6072d5f60358d99d3db562be58204d"
+      }
+    </script>
+    <!-- End Jekyll SEO tag -->
+    <link
+      type="application/atom+xml"
+      rel="alternate"
+      href="https://riggraz.dev/feed.xml"
+      title="krupkat's Gistbook"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="/logo.png" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">..</a>
+        <article>
+          <p class="post-meta">
+            <time datetime="2022-07-27 16:42:00 +0000">2022-07-27</time>
+          </p>
+
+          <h1>MS debugger visualizer</h1>
+          <p>
+            Tags:
+
+            <a class="collection" href="/tags/msvc">msvc</a>
+
+            <a class="collection" href="/tags/natvis">natvis</a>
+          </p>
+          <noscript>
+            <pre>
+How to capture and use the template parameters in custom debugger visualizers.
+
+#### Couple of caveats:
+
+Capture multiple template parameters (not in the [docs](https://docs.microsoft.com/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2022#templated-classes)), e.g.:
+
+```
+&lt;Type Name=&quot;MyType&amp;lt;*,*,*&amp;gt;&quot;&gt;
+```
+
+Then refer to these as `$T1`, `$T2` and `$T3`, however, inside a `DisplayString` you have to use `{&quot;$T1&quot;}` instead.
+This prints extra quotes around the string, which you can get rid of by adding a format specifier ([docs](https://docs.microsoft.com/en-us/visualstudio/debugger/format-specifiers-in-cpp?view=vs-2022#BKMK_Visual_Studio_2012_format_specifiers)):
+
+```
+{&quot;$T1&quot;, sb}
+```
+
+To compare the name of a parameter type in a `Condition` one has to use the `strcmp` function:
+
+```
+Condition=&#39;strcmp(&quot;$T1&quot;,&quot;char&quot;)==0&#39;
+```
+
+`DisplayString` can also include a `Condition`.
+
+Attached example adapted from: [https://github.com/hhoppe/Mesh-processing-library/blob/main/libHh/libHh.natvis](https://github.com/hhoppe/Mesh-processing-library/blob/aade85891a0fd02c9f74f01225cbfb1b6e77b44e/libHh/libHh.natvis)</pre
+            >
+          </noscript>
+          <script src="https://gist.github.com/krupkat/ec6072d5f60358d99d3db562be58204d.js"></script>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

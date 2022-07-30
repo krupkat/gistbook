@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Building Catch tests with CMake</title>
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <meta name="generator" content="Jekyll v4.2.2" />
+    <meta property="og:title" content="Building Catch tests with CMake" />
+    <meta name="author" content="Tomáš Krupka" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      name="description"
+      content='cmake_minimum_required(VERSION 3.15) # By default don&#39;t build the tests. # This has to be set before the project declaration. # Enable with cmake -DBUILD_TESTING=ON OPTION(BUILD_TESTING "Build tests" OFF) project(ProjectName) include(CTest) # ... # your main CMakeLists.txt content # ... if(BUILD_TESTING) add_subdirectory(tests) endif()'
+    />
+    <meta
+      property="og:description"
+      content='cmake_minimum_required(VERSION 3.15) # By default don&#39;t build the tests. # This has to be set before the project declaration. # Enable with cmake -DBUILD_TESTING=ON OPTION(BUILD_TESTING "Build tests" OFF) project(ProjectName) include(CTest) # ... # your main CMakeLists.txt content # ... if(BUILD_TESTING) add_subdirectory(tests) endif()'
+    />
+    <link
+      rel="canonical"
+      href="https://riggraz.dev/gist/ad97146b595d3de7c5dd320f9f3b40c0"
+    />
+    <meta
+      property="og:url"
+      content="https://riggraz.dev/gist/ad97146b595d3de7c5dd320f9f3b40c0"
+    />
+    <meta property="og:site_name" content="krupkat’s Gistbook" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="article:published_time"
+      content="2022-07-29T14:17:00+00:00"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Building Catch tests with CMake" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": { "@type": "Person", "name": "Tomáš Krupka" },
+        "dateModified": "2022-07-29T14:17:00+00:00",
+        "datePublished": "2022-07-29T14:17:00+00:00",
+        "description": "cmake_minimum_required(VERSION 3.15) # By default don&#39;t build the tests. # This has to be set before the project declaration. # Enable with cmake -DBUILD_TESTING=ON OPTION(BUILD_TESTING &quot;Build tests&quot; OFF) project(ProjectName) include(CTest) # ... # your main CMakeLists.txt content # ... if(BUILD_TESTING) add_subdirectory(tests) endif()",
+        "headline": "Building Catch tests with CMake",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://riggraz.dev/gist/ad97146b595d3de7c5dd320f9f3b40c0"
+        },
+        "url": "https://riggraz.dev/gist/ad97146b595d3de7c5dd320f9f3b40c0"
+      }
+    </script>
+    <!-- End Jekyll SEO tag -->
+    <link
+      type="application/atom+xml"
+      rel="alternate"
+      href="https://riggraz.dev/feed.xml"
+      title="krupkat's Gistbook"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="/logo.png" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">..</a>
+        <article>
+          <p class="post-meta">
+            <time datetime="2022-07-29 14:17:00 +0000">2022-07-29</time>
+          </p>
+
+          <h1>Building Catch tests with CMake</h1>
+          <p>
+            Tags:
+
+            <a class="collection" href="/tags/cmake">cmake</a>
+
+            <a class="collection" href="/tags/catch">catch</a>
+
+            <a class="collection" href="/tags/testing">testing</a>
+          </p>
+          <noscript>
+            <pre>
+cmake_minimum_required(VERSION 3.15)
+
+# By default don&#39;t build the tests.
+# This has to be set before the project declaration.
+# Enable with cmake -DBUILD_TESTING=ON
+OPTION(BUILD_TESTING &quot;Build tests&quot; OFF) 
+
+project(ProjectName)
+include(CTest)
+
+# ...
+# your main CMakeLists.txt content
+# ...
+
+if(BUILD_TESTING)
+  add_subdirectory(tests)
+endif()
+</pre
+            >
+          </noscript>
+          <script src="https://gist.github.com/krupkat/ad97146b595d3de7c5dd320f9f3b40c0.js"></script>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,2 @@
+PyGithub==1.55
+sanitize-filename==1.2.0

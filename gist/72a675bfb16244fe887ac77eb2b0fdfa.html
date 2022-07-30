@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>VS Code setup</title>
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <meta name="generator" content="Jekyll v4.2.2" />
+    <meta property="og:title" content="VS Code setup" />
+    <meta name="author" content="Tomáš Krupka" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      name="description"
+      content='Setup Windows for development in VS Code without installing Visual Studio IDE. ## Install prerequisites Install VS build tools: https://visualstudio.microsoft.com/cs/downloads/#build-tools-for-visual-studio-2022 Install Scoop: https://scoop.sh ``` winget install Microsoft.VisualStudioCode ``` Replacement build system for MSBuild: ``` scoop install ninja ``` ## Build Clang Open `x64 Native Tools Command Prompt for VS 2022`: ``` git clone git@github.com:llvm/llvm-project.git git checkout llvmorg-14.0.6 mkdir build cd build cmake-gui ../llvm ``` Click Configure and select Ninja + Native option, modify following options: ``` CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=directory LLVM_ENABLE_PROJECTS=clang;clang-tools-extra ``` Click Generate. ``` ninja ninja install ``` Optional: Add Clang install directory + `/bin` to `PATH`. ## Build Iwyu ``` git clone git@github.com:include-what-you-use/include-what-you-use.git git checkout clang_14 mkdir build cd build cmake-gui .. ``` Click Configure and select Ninja + Native option, modify following options: ``` CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=directory CMAKE_PREFIX_PATH=clang_install_directory ``` Click Generate. ``` ninja ninja install ``` **Important**: Copy Clang headers to Iwyu install dir ([docs](https://github.com/include-what-you-use/include-what-you-use/blob/master/README.md#how-to-install)). Optional: Add Iwyu install directory + `/bin` to `PATH`. ## Setup VS Code CTRL+Shift+X -&gt; Install C++, CMake, CMake Tools extensions. CTRL+Shift+P -&gt; Open Settings (JSON), add these options: ``` { "telemetry.telemetryLevel": "off", "editor.renderWhitespace": "all", "breadcrumbs.enabled": false, "editor.wordWrap": "on", "cmake.generator": "Ninja", "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}", "cmake.statusbar.visibility": "compact", "C_Cpp.clang_format_path": "clang_install_directory/bin/clang-format.exe", "C_Cpp.codeAnalysis.clangTidy.path": "clang_install_directory/bin/clang-tidy.exe", "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools", } ``` ### Add Clang as a build target CTRL + Shift + P -&gt; Scan for Kits CTRL + Shift + P -&gt; Edit User-Local CMake Kits Edit the Kit for the self-built Clang to include a Visual Studio reference (copy from a diferent Kit), e.g.: ``` { "name": "Clang 14.0.6 x86_64-pc-windows-msvc", "visualStudio": "4dab2ce7", # ADD this "visualStudioArchitecture": "x64", # ADD this "compilers": { "C": "clang_install_directory/bin/clang.exe", "CXX": "clang_install_directory/bin/clang++.exe" } }, ``` This is so that VS Code runs the respective `[vcvarsall.bat]` script before each cmake/build. That is needed e.g. for the linker + various standard headers.'
+    />
+    <meta
+      property="og:description"
+      content='Setup Windows for development in VS Code without installing Visual Studio IDE. ## Install prerequisites Install VS build tools: https://visualstudio.microsoft.com/cs/downloads/#build-tools-for-visual-studio-2022 Install Scoop: https://scoop.sh ``` winget install Microsoft.VisualStudioCode ``` Replacement build system for MSBuild: ``` scoop install ninja ``` ## Build Clang Open `x64 Native Tools Command Prompt for VS 2022`: ``` git clone git@github.com:llvm/llvm-project.git git checkout llvmorg-14.0.6 mkdir build cd build cmake-gui ../llvm ``` Click Configure and select Ninja + Native option, modify following options: ``` CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=directory LLVM_ENABLE_PROJECTS=clang;clang-tools-extra ``` Click Generate. ``` ninja ninja install ``` Optional: Add Clang install directory + `/bin` to `PATH`. ## Build Iwyu ``` git clone git@github.com:include-what-you-use/include-what-you-use.git git checkout clang_14 mkdir build cd build cmake-gui .. ``` Click Configure and select Ninja + Native option, modify following options: ``` CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=directory CMAKE_PREFIX_PATH=clang_install_directory ``` Click Generate. ``` ninja ninja install ``` **Important**: Copy Clang headers to Iwyu install dir ([docs](https://github.com/include-what-you-use/include-what-you-use/blob/master/README.md#how-to-install)). Optional: Add Iwyu install directory + `/bin` to `PATH`. ## Setup VS Code CTRL+Shift+X -&gt; Install C++, CMake, CMake Tools extensions. CTRL+Shift+P -&gt; Open Settings (JSON), add these options: ``` { "telemetry.telemetryLevel": "off", "editor.renderWhitespace": "all", "breadcrumbs.enabled": false, "editor.wordWrap": "on", "cmake.generator": "Ninja", "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}", "cmake.statusbar.visibility": "compact", "C_Cpp.clang_format_path": "clang_install_directory/bin/clang-format.exe", "C_Cpp.codeAnalysis.clangTidy.path": "clang_install_directory/bin/clang-tidy.exe", "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools", } ``` ### Add Clang as a build target CTRL + Shift + P -&gt; Scan for Kits CTRL + Shift + P -&gt; Edit User-Local CMake Kits Edit the Kit for the self-built Clang to include a Visual Studio reference (copy from a diferent Kit), e.g.: ``` { "name": "Clang 14.0.6 x86_64-pc-windows-msvc", "visualStudio": "4dab2ce7", # ADD this "visualStudioArchitecture": "x64", # ADD this "compilers": { "C": "clang_install_directory/bin/clang.exe", "CXX": "clang_install_directory/bin/clang++.exe" } }, ``` This is so that VS Code runs the respective `[vcvarsall.bat]` script before each cmake/build. That is needed e.g. for the linker + various standard headers.'
+    />
+    <link
+      rel="canonical"
+      href="https://riggraz.dev/gist/72a675bfb16244fe887ac77eb2b0fdfa"
+    />
+    <meta
+      property="og:url"
+      content="https://riggraz.dev/gist/72a675bfb16244fe887ac77eb2b0fdfa"
+    />
+    <meta property="og:site_name" content="krupkat’s Gistbook" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="article:published_time"
+      content="2022-07-20T12:26:00+00:00"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="VS Code setup" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": { "@type": "Person", "name": "Tomáš Krupka" },
+        "dateModified": "2022-07-20T12:26:00+00:00",
+        "datePublished": "2022-07-20T12:26:00+00:00",
+        "description": "Setup Windows for development in VS Code without installing Visual Studio IDE. ## Install prerequisites Install VS build tools: https://visualstudio.microsoft.com/cs/downloads/#build-tools-for-visual-studio-2022 Install Scoop: https://scoop.sh ``` winget install Microsoft.VisualStudioCode ``` Replacement build system for MSBuild: ``` scoop install ninja ``` ## Build Clang Open `x64 Native Tools Command Prompt for VS 2022`: ``` git clone git@github.com:llvm/llvm-project.git git checkout llvmorg-14.0.6 mkdir build cd build cmake-gui ../llvm ``` Click Configure and select Ninja + Native option, modify following options: ``` CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=directory LLVM_ENABLE_PROJECTS=clang;clang-tools-extra ``` Click Generate. ``` ninja ninja install ``` Optional: Add Clang install directory + `/bin` to `PATH`. ## Build Iwyu ``` git clone git@github.com:include-what-you-use/include-what-you-use.git git checkout clang_14 mkdir build cd build cmake-gui .. ``` Click Configure and select Ninja + Native option, modify following options: ``` CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=directory CMAKE_PREFIX_PATH=clang_install_directory ``` Click Generate. ``` ninja ninja install ``` **Important**: Copy Clang headers to Iwyu install dir ([docs](https://github.com/include-what-you-use/include-what-you-use/blob/master/README.md#how-to-install)). Optional: Add Iwyu install directory + `/bin` to `PATH`. ## Setup VS Code CTRL+Shift+X -&gt; Install C++, CMake, CMake Tools extensions. CTRL+Shift+P -&gt; Open Settings (JSON), add these options: ``` { &quot;telemetry.telemetryLevel&quot;: &quot;off&quot;, &quot;editor.renderWhitespace&quot;: &quot;all&quot;, &quot;breadcrumbs.enabled&quot;: false, &quot;editor.wordWrap&quot;: &quot;on&quot;, &quot;cmake.generator&quot;: &quot;Ninja&quot;, &quot;cmake.buildDirectory&quot;: &quot;${workspaceFolder}/build/${buildType}&quot;, &quot;cmake.statusbar.visibility&quot;: &quot;compact&quot;, &quot;C_Cpp.clang_format_path&quot;: &quot;clang_install_directory/bin/clang-format.exe&quot;, &quot;C_Cpp.codeAnalysis.clangTidy.path&quot;: &quot;clang_install_directory/bin/clang-tidy.exe&quot;, &quot;C_Cpp.default.configurationProvider&quot;: &quot;ms-vscode.cmake-tools&quot;, } ``` ### Add Clang as a build target CTRL + Shift + P -&gt; Scan for Kits CTRL + Shift + P -&gt; Edit User-Local CMake Kits Edit the Kit for the self-built Clang to include a Visual Studio reference (copy from a diferent Kit), e.g.: ``` { &quot;name&quot;: &quot;Clang 14.0.6 x86_64-pc-windows-msvc&quot;, &quot;visualStudio&quot;: &quot;4dab2ce7&quot;, # ADD this &quot;visualStudioArchitecture&quot;: &quot;x64&quot;, # ADD this &quot;compilers&quot;: { &quot;C&quot;: &quot;clang_install_directory/bin/clang.exe&quot;, &quot;CXX&quot;: &quot;clang_install_directory/bin/clang++.exe&quot; } }, ``` This is so that VS Code runs the respective `[vcvarsall.bat]` script before each cmake/build. That is needed e.g. for the linker + various standard headers.",
+        "headline": "VS Code setup",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://riggraz.dev/gist/72a675bfb16244fe887ac77eb2b0fdfa"
+        },
+        "url": "https://riggraz.dev/gist/72a675bfb16244fe887ac77eb2b0fdfa"
+      }
+    </script>
+    <!-- End Jekyll SEO tag -->
+    <link
+      type="application/atom+xml"
+      rel="alternate"
+      href="https://riggraz.dev/feed.xml"
+      title="krupkat's Gistbook"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="/logo.png" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">..</a>
+        <article>
+          <p class="post-meta">
+            <time datetime="2022-07-20 12:26:00 +0000">2022-07-20</time>
+          </p>
+
+          <h1>VS Code setup</h1>
+          <p>
+            Tags:
+
+            <a class="collection" href="/tags/windows">windows</a>
+
+            <a class="collection" href="/tags/vscode">vscode</a>
+
+            <a class="collection" href="/tags/clang">clang</a>
+          </p>
+          <noscript>
+            <pre>
+Setup Windows for development in VS Code without installing Visual Studio IDE.
+
+## Install prerequisites
+
+Install VS build tools: https://visualstudio.microsoft.com/cs/downloads/#build-tools-for-visual-studio-2022
+Install Scoop: https://scoop.sh
+
+```
+winget install Microsoft.VisualStudioCode
+```
+
+Replacement build system for MSBuild:
+
+```
+scoop install ninja
+```
+
+## Build Clang
+
+Open `x64 Native Tools Command Prompt for VS 2022`:
+
+```
+git clone git@github.com:llvm/llvm-project.git
+git checkout llvmorg-14.0.6
+mkdir build
+cd build
+cmake-gui ../llvm
+```
+
+Click Configure and select Ninja + Native option, modify following options:
+
+```
+CMAKE_BUILD_TYPE=Release
+CMAKE_INSTALL_PREFIX=directory
+LLVM_ENABLE_PROJECTS=clang;clang-tools-extra
+```
+
+Click Generate.
+
+```
+ninja
+ninja install
+```
+
+Optional: Add Clang install directory + `/bin` to `PATH`.
+
+## Build Iwyu
+
+```
+git clone git@github.com:include-what-you-use/include-what-you-use.git
+git checkout clang_14
+mkdir build
+cd build
+cmake-gui ..
+```
+
+Click Configure and select Ninja + Native option, modify following options:
+
+```
+CMAKE_BUILD_TYPE=Release
+CMAKE_INSTALL_PREFIX=directory
+CMAKE_PREFIX_PATH=clang_install_directory
+```
+
+Click Generate.
+
+```
+ninja
+ninja install
+```
+
+**Important**: Copy Clang headers to Iwyu install dir ([docs](https://github.com/include-what-you-use/include-what-you-use/blob/master/README.md#how-to-install)).
+
+Optional: Add Iwyu install directory + `/bin` to `PATH`.
+
+## Setup VS Code
+
+CTRL+Shift+X -&gt; Install C++, CMake, CMake Tools extensions.
+
+CTRL+Shift+P -&gt; Open Settings (JSON), add these options:
+
+```
+{
+    &quot;telemetry.telemetryLevel&quot;: &quot;off&quot;,
+    &quot;editor.renderWhitespace&quot;: &quot;all&quot;,
+    &quot;breadcrumbs.enabled&quot;: false,
+    &quot;editor.wordWrap&quot;: &quot;on&quot;,
+    &quot;cmake.generator&quot;: &quot;Ninja&quot;,
+    &quot;cmake.buildDirectory&quot;: &quot;${workspaceFolder}/build/${buildType}&quot;,
+    &quot;cmake.statusbar.visibility&quot;: &quot;compact&quot;,
+    &quot;C_Cpp.clang_format_path&quot;: &quot;clang_install_directory/bin/clang-format.exe&quot;,
+    &quot;C_Cpp.codeAnalysis.clangTidy.path&quot;: &quot;clang_install_directory/bin/clang-tidy.exe&quot;,
+    &quot;C_Cpp.default.configurationProvider&quot;: &quot;ms-vscode.cmake-tools&quot;,
+}
+
+```
+
+### Add Clang as a build target
+
+CTRL + Shift + P -&gt; Scan for Kits
+CTRL + Shift + P -&gt; Edit User-Local CMake Kits
+
+Edit the Kit for the self-built Clang to include a Visual Studio reference (copy from a diferent Kit), e.g.:
+
+```
+  {
+    &quot;name&quot;: &quot;Clang 14.0.6 x86_64-pc-windows-msvc&quot;,
+    &quot;visualStudio&quot;: &quot;4dab2ce7&quot;,           # ADD this
+    &quot;visualStudioArchitecture&quot;: &quot;x64&quot;,    # ADD this
+    &quot;compilers&quot;: {
+      &quot;C&quot;: &quot;clang_install_directory/bin/clang.exe&quot;,
+      &quot;CXX&quot;: &quot;clang_install_directory/bin/clang++.exe&quot;
+    }
+  },
+```
+
+This is so that VS Code runs the respective `[vcvarsall.bat]` script before each cmake/build. That is needed e.g. for the linker + various standard headers.</pre
+            >
+          </noscript>
+          <script src="https://gist.github.com/krupkat/72a675bfb16244fe887ac77eb2b0fdfa.js"></script>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Backup WSL to Mega</title>
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+    <meta name="generator" content="Jekyll v4.2.2" />
+    <meta property="og:title" content="Backup WSL to Mega" />
+    <meta name="author" content="Tomáš Krupka" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      name="description"
+      content='## Install Mega cmd Add the Mega repository in wsl sources, create `/etc/apt/sources.list.d/megasync.list`: ``` deb https://mega.nz/linux/MEGAsync/xUbuntu_20.04/ ./ ``` Import key and install: ``` wget -O - https://mega.nz/linux/MEGAsync/xUbuntu_20.04/Release.key | sudo apt-key add - sudo apt update sudo apt install megacmd ``` Create unlocker binary in `/usr/local/bin/mega-unlock`: ``` #!/usr/bin/bash read -s pass mega-login &lt;username&gt; $pass unset pass ``` Run it and enter the Mega password: ``` chmod +x /usr/local/bin/mega-unlock mega-unlock ``` ## Setup backup Prepare backup directories and set up sync: ``` mega-mkdir wsl mkdir sync mega-sync sync wsl ``` Create backup script `backup.sh`: ``` #!/usr/bin/bash zip -r -9 sync/backup.zip . -x "/.*" -x "/sync/*" ``` ## Remove Mega autocompletion This seems to be a bug in WSL, seems to slow down startup of each instance. Remove `/etc/bash_completion.d/megacmd_completion.sh` to fix.'
+    />
+    <meta
+      property="og:description"
+      content='## Install Mega cmd Add the Mega repository in wsl sources, create `/etc/apt/sources.list.d/megasync.list`: ``` deb https://mega.nz/linux/MEGAsync/xUbuntu_20.04/ ./ ``` Import key and install: ``` wget -O - https://mega.nz/linux/MEGAsync/xUbuntu_20.04/Release.key | sudo apt-key add - sudo apt update sudo apt install megacmd ``` Create unlocker binary in `/usr/local/bin/mega-unlock`: ``` #!/usr/bin/bash read -s pass mega-login &lt;username&gt; $pass unset pass ``` Run it and enter the Mega password: ``` chmod +x /usr/local/bin/mega-unlock mega-unlock ``` ## Setup backup Prepare backup directories and set up sync: ``` mega-mkdir wsl mkdir sync mega-sync sync wsl ``` Create backup script `backup.sh`: ``` #!/usr/bin/bash zip -r -9 sync/backup.zip . -x "/.*" -x "/sync/*" ``` ## Remove Mega autocompletion This seems to be a bug in WSL, seems to slow down startup of each instance. Remove `/etc/bash_completion.d/megacmd_completion.sh` to fix.'
+    />
+    <link
+      rel="canonical"
+      href="https://riggraz.dev/gist/8a8c8951dcf1030e2c759a90ee165b92"
+    />
+    <meta
+      property="og:url"
+      content="https://riggraz.dev/gist/8a8c8951dcf1030e2c759a90ee165b92"
+    />
+    <meta property="og:site_name" content="krupkat’s Gistbook" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="article:published_time"
+      content="2022-02-03T16:26:00+00:00"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Backup WSL to Mega" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": { "@type": "Person", "name": "Tomáš Krupka" },
+        "dateModified": "2022-02-03T16:26:00+00:00",
+        "datePublished": "2022-02-03T16:26:00+00:00",
+        "description": "## Install Mega cmd Add the Mega repository in wsl sources, create `/etc/apt/sources.list.d/megasync.list`: ``` deb https://mega.nz/linux/MEGAsync/xUbuntu_20.04/ ./ ``` Import key and install: ``` wget -O - https://mega.nz/linux/MEGAsync/xUbuntu_20.04/Release.key | sudo apt-key add - sudo apt update sudo apt install megacmd ``` Create unlocker binary in `/usr/local/bin/mega-unlock`: ``` #!/usr/bin/bash read -s pass mega-login &lt;username&gt; $pass unset pass ``` Run it and enter the Mega password: ``` chmod +x /usr/local/bin/mega-unlock mega-unlock ``` ## Setup backup Prepare backup directories and set up sync: ``` mega-mkdir wsl mkdir sync mega-sync sync wsl ``` Create backup script `backup.sh`: ``` #!/usr/bin/bash zip -r -9 sync/backup.zip . -x &quot;/.*&quot; -x &quot;/sync/*&quot; ``` ## Remove Mega autocompletion This seems to be a bug in WSL, seems to slow down startup of each instance. Remove `/etc/bash_completion.d/megacmd_completion.sh` to fix.",
+        "headline": "Backup WSL to Mega",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://riggraz.dev/gist/8a8c8951dcf1030e2c759a90ee165b92"
+        },
+        "url": "https://riggraz.dev/gist/8a8c8951dcf1030e2c759a90ee165b92"
+      }
+    </script>
+    <!-- End Jekyll SEO tag -->
+    <link
+      type="application/atom+xml"
+      rel="alternate"
+      href="https://riggraz.dev/feed.xml"
+      title="krupkat's Gistbook"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="/logo.png" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">..</a>
+        <article>
+          <p class="post-meta">
+            <time datetime="2022-02-03 16:26:00 +0000">2022-02-03</time>
+          </p>
+
+          <h1>Backup WSL to Mega</h1>
+          <p>
+            Tags:
+
+            <a class="collection" href="/tags/wsl">wsl</a>
+
+            <a class="collection" href="/tags/mega">mega</a>
+          </p>
+          <noscript>
+            <pre>
+## Install Mega cmd
+
+Add the Mega repository in wsl sources, create `/etc/apt/sources.list.d/megasync.list`:
+
+```
+deb https://mega.nz/linux/MEGAsync/xUbuntu_20.04/ ./
+```
+
+Import key and install:
+
+```
+wget -O - https://mega.nz/linux/MEGAsync/xUbuntu_20.04/Release.key | sudo apt-key add -
+
+sudo apt update
+sudo apt install megacmd
+```
+
+Create unlocker binary in `/usr/local/bin/mega-unlock`:
+
+```
+#!/usr/bin/bash
+
+read -s pass
+mega-login &lt;username&gt; $pass
+unset pass
+```
+
+Run it and enter the Mega password:
+
+```
+chmod +x /usr/local/bin/mega-unlock
+mega-unlock
+```
+
+## Setup backup
+
+Prepare backup directories and set up sync:
+
+```
+mega-mkdir wsl
+mkdir sync
+mega-sync sync wsl
+```
+
+Create backup script `backup.sh`:
+
+```
+#!/usr/bin/bash
+zip -r -9 sync/backup.zip . -x &quot;/.*&quot; -x &quot;/sync/*&quot;
+```
+
+## Remove Mega autocompletion
+
+This seems to be a bug in WSL, seems to slow down startup of each instance. Remove `/etc/bash_completion.d/megacmd_completion.sh` to fix.</pre
+            >
+          </noscript>
+          <script src="https://gist.github.com/krupkat/8a8c8951dcf1030e2c759a90ee165b92.js"></script>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
