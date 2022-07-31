@@ -8,7 +8,7 @@ theme: no-style-please
 
 theme_config:
   appearance: "auto"
-  back_home_text: ".."
+  back_home_text: "home"
   date_format: "%Y-%m-%d"
   show_description: false
 
