@@ -10,7 +10,7 @@ import sanitize_filename
 Gist = collections.namedtuple("Gist", ["id", "title", "tags", "updated", "embed"])
 
 TITLE_RE_1 = re.compile(r"^\[(.+)\]")
-TITLE_RE_2 = re.compile(r"^(.+)#")
+TITLE_RE_2 = re.compile(r"^(.*?)#")
 TAG_RE = re.compile(r"#(\S+)")
 
 
