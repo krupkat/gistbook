@@ -25,3 +25,4 @@ exclude:
   - requirements.txt
   - LICENSE
   - README.md
+  - templates
