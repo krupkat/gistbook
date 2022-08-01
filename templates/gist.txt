@@ -1,0 +1,15 @@
+---
+layout: post
+title: {{ gist.title }}
+category: gist
+permalink: /gist/{{ gist.id }}
+date: {{ gist.updated.strftime("%Y-%m-%d %H:%M:%S %z") }}
+{% if gist.tags -%}
+tags:
+{% for tag in gist.tags -%}
+  - {{ tag }}
+{% endfor -%}
+{% endif -%}
+---
+
+{{ gist.embed }}
