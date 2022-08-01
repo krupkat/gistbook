@@ -59,11 +59,15 @@ def WriteGist(gist, env):
         file.write(template.render(gist=gist))
 
 
-def WriteTag(tag, env):
+def WriteTag(tag, last_updated, env):
     template = env.get_template("tag.txt")
     filename = "_tags/{}.md".format(sanitize_filename.sanitize(tag))
     with open(filename, "w") as file:
-        file.write(template.render(tag=tag))
+        file.write(template.render(tag=tag, last_updated=last_updated))
+
+
+def EpochDatetime():
+    return lambda: datetime.datetime.fromtimestamp(0, datetime.timezone.utc)
 
 
 if __name__ == "__main__":
@@ -77,11 +81,12 @@ if __name__ == "__main__":
         loader=jinja2.PackageLoader("bootstrap"), autoescape=jinja2.select_autoescape()
     )
 
-    tags = set()
+    tags = collections.defaultdict(EpochDatetime())
     git = github.Github(args.secret)
     for gist in GetGists(git, args.include_private):
-        tags.update(gist.tags)
         WriteGist(gist, env)
+        for tag in gist.tags:
+            tags[tag] = max(tags[tag], gist.updated)
 
-    for tag in tags:
-        WriteTag(tag, env)
+    for tag, last_updated in tags.items():
+        WriteTag(tag, last_updated, env)
