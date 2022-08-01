@@ -43,3 +43,33 @@ In case there is no suitable title found in the description, name of the first f
 4. Edit `_config.yml`
     - `title`, `author`, `description`, `url`
     - for details on `theme_config` options check the [config](https://github.com/riggraz/no-style-please/blob/9011f75e2e8af5eaaff96dc8f939357d1a417deb/_config.yml) from the original theme
+
+## Local build
+
+### Prerequisites
+- Jekyll build environment, see [docs](https://jekyllrb.com/docs/) for setup instructions. (on Windows I recommend running on [WSL](https://docs.microsoft.com/en-us/windows/wsl/install))
+- Python 3 + `Jinja2`, `PyGithub` and `sanitize-filename` pip packages
+- The requirements specified in `Gemfile` work on Ubuntu 22.04, you can modify the versions needed to suit your distribution
+
+### Build
+
+One time:
+
+```
+git clone
+cd repo
+bundle install
+```
+
+This will generate the files in the `_site` directory:
+
+```
+./bootstrap.py GIST_TOKEN
+bundle exec jekyll serve
+```
+
+## Credit
+
+Inspiration: https://jpmens.net/2019/04/03/backup-all-my-gists/
+
+Theme: https://github.com/riggraz/no-style-please
