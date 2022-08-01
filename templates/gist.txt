@@ -12,4 +12,4 @@ tags:
 {% endif -%}
 ---
 
-{{ gist.embed }}
+{{ '{%' }} gist {{ gist.login }}/{{ gist.id }} {{ '%}' }}

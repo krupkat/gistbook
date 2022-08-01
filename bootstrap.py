@@ -8,7 +8,7 @@ import jinja2
 import re
 import sanitize_filename
 
-Gist = collections.namedtuple("Gist", ["id", "title", "tags", "updated", "embed"])
+Gist = collections.namedtuple("Gist", ["id", "login", "title", "tags", "updated"])
 
 TITLE_RE_1 = re.compile(r"^\[(.+)\]")
 TITLE_RE_2 = re.compile(r"^(.*?)#")
@@ -34,10 +34,6 @@ def ParseTags(gist):
     return re.findall(TAG_RE, gist.description)
 
 
-def EmbedGist(username, id):
-    return "{{% gist {}/{} %}}".format(username, id)
-
-
 def FromUtc(date):
     utc = datetime.timezone.utc
     return date.replace(tzinfo=utc).astimezone()
@@ -49,10 +45,10 @@ def GetGists(git, include_private):
         if gist.public or include_private:
             yield Gist(
                 gist.id,
+                git_user.login,
                 ParseTitle(gist),
                 ParseTags(gist),
                 FromUtc(gist.updated_at),
-                EmbedGist(git_user.login, gist.id),
             )
 
 
