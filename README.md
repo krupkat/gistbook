@@ -11,16 +11,15 @@ Getting started is easy, you can finish everything in a few minutes from your br
 0. Fork this repository
 1. User settings -> Developer settings -> Personal access tokens -> Generate new token -> Allow Gists permission -> Generate token -> Copy
 2. Repository settings -> Secrets -> Actions -> New repository secret -> Name it `GIST_TOKEN` + paste the generated token
-3. Actions -> Enable workflows -> `jekyll-build` -> Enable workflow
-4. Trigger the workflow for the first time by pushing a commit, e.g.:
+3. Repository settings -> Pages -> Source -> Github Actions
+4. Actions -> Enable workflows
+5. Trigger the workflow for the first time by pushing a commit, e.g.:
     - Edit `_config.yml` -> url: https://(your_username).github.io -> Commit
-5. Actions - Wait for the `jekyll-build` action to finish 
-6. Repository settings -> Pages -> Deploy from branch -> `master`
-7. Wait for the `pages-build-deployment` action to finish -> Check https://(your_username).github.io/gistbook
+6. Wait for the action to finish -> Check https://(your_username).github.io/gistbook
 
 ## Workflow
 
-The website will be rebuilt automatically every day, you can trigger a manual rebuild from the Actions tab (`jekyll-build` -> Re-run all jobs).
+The website will be rebuilt automatically every day, you can trigger a manual rebuild from the Actions tab.
 
 ## Gist metadata
 
@@ -34,7 +33,7 @@ In case there is no suitable title found in the description, name of the first f
 
 ## Customization
 
-1. Edit `.github/workflows/github-pages.yml` to include secret Gists in your dashboard:
+1. Edit `.github/workflows/jekyll.yml` to include secret Gists in your dashboard:
     - `python bootstrap.py ${{ secrets.GIST_TOKEN }} --include_private`
 2. Edit `_data/menu.yml` to modify homepage layout ([docs](https://github.com/riggraz/no-style-please#customize-the-menu)).
 3. Edit `README.md` to include workflow badges for your Gistbook:
