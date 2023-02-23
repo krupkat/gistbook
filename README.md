@@ -1,5 +1,4 @@
-[![jekyll-build](https://github.com/krupkat/gistbook/actions/workflows/github-pages.yml/badge.svg)](https://github.com/krupkat/gistbook/actions/workflows/github-pages.yml)
-[![pages-build-deployment](https://github.com/krupkat/gistbook/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/krupkat/gistbook/actions/workflows/pages/pages-build-deployment)
+[![Deploy Jekyll site to Pages](https://github.com/krupkat/gistbook/actions/workflows/jekyll.yml/badge.svg)](https://github.com/krupkat/gistbook/actions/workflows/jekyll.yml)
 
 # gistbook
 
